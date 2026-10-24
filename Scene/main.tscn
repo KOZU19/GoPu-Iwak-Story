@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://credqismja2dy"]
 
-[ext_resource type="Script" uid="uid://bt7chgd7sg2c1" path="res://Script/main.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://daprus0iys050" path="res://Scene/fish.tscn" id="2_0xm2m"]
+[ext_resource type="Script" uid="uid://bt7chgd7sg2c1" path="res://Script/main.gd" id="1_r34rm"]
+[ext_resource type="PackedScene" uid="uid://daprus0iys050" path="res://Scene/fish.tscn" id="2_2wwxx"]
+[ext_resource type="Script" uid="uid://dffp0fqpbqtdn" path="res://Scene/aim_over_lay.gd" id="3_3amdw"]
 
 [node name="Node2D" type="Node2D" unique_id=806502427]
-script = ExtResource("1_ig7tw")
-fish_scene = ExtResource("2_0xm2m")
+script = ExtResource("1_r34rm")
+fish_scene = ExtResource("2_2wwxx")
 
 [node name="TimerLabel" type="Label" parent="." unique_id=1005294165]
 offset_right = 40.0
@@ -28,3 +29,10 @@ offset_right = 52.0
 offset_bottom = 94.0
 text = "Message"
 metadata/_edit_use_anchors_ = true
+
+[node name="AimOverLay" type="Control" parent="." unique_id=653626693]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_3amdw")

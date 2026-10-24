@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://oc7hf6cfb5hw"]
+
+[ext_resource type="Script" uid="uid://bt7chgd7sg2c1" path="res://Script/main.gd" id="1_l5yta"]
+[ext_resource type="PackedScene" uid="uid://daprus0iys050" path="res://Scene/fish.tscn" id="2_mb27m"]
+[ext_resource type="Script" uid="uid://dffp0fqpbqtdn" path="res://Scene/aim_over_lay.gd" id="3_3l07l"]
+
+[node name="Node2D" type="Node2D" unique_id=806502427]
+script = ExtResource("1_l5yta")
+fish_scene = ExtResource("2_mb27m")
+
+[node name="TimerLabel" type="Label" parent="." unique_id=1005294165]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "time"
+metadata/_edit_use_anchors_ = true
+
+[node name="CatchLabel" type="Label" parent="." unique_id=1064746250]
+offset_left = 5.0
+offset_top = 37.0
+offset_right = 45.0
+offset_bottom = 60.0
+text = "catch"
+metadata/_edit_use_anchors_ = true
+
+[node name="Message_label" type="Label" parent="." unique_id=321582867]
+offset_left = 10.0
+offset_top = 71.0
+offset_right = 52.0
+offset_bottom = 94.0
+text = "Message"
+metadata/_edit_use_anchors_ = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=538698437]
+position = Vector2(575, 324)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1344093734]
+
+[node name="AimOverLay" type="Control" parent="CanvasLayer" unique_id=653626693]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_3l07l")
