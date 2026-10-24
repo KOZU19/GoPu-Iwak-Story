@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://ucscpdfavypu"]
+
+[ext_resource type="Script" uid="uid://c6xhab3jj48nl" path="res://Script/menu.gd" id="1_b23qx"]
+
+[node name="Node2D" type="Node2D" unique_id=1071884492]
+script = ExtResource("1_b23qx")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=9078803]
+offset_right = 1154.0
+offset_bottom = 648.0
+color = Color(0.24822596, 0.15216386, 0.005460771, 1)
+
+[node name="Label" type="Label" parent="." unique_id=401548608]
+offset_left = 54.0
+offset_top = 163.0
+offset_right = 651.0
+offset_bottom = 333.0
+theme_override_constants/line_spacing = -32
+theme_override_font_sizes/font_size = 73
+text = "GoPu: 
+Iwak Story"
+
+[node name="Play" type="Button" parent="." unique_id=1232352750]
+offset_left = 697.0
+offset_top = 254.0
+offset_right = 1096.0
+offset_bottom = 359.0
+theme_override_font_sizes/font_size = 54
+text = "Play"
+
+[node name="Exit" type="Button" parent="." unique_id=1302240104]
+offset_left = 695.0
+offset_top = 383.0
+offset_right = 1094.0
+offset_bottom = 488.0
+theme_override_font_sizes/font_size = 54
+text = "Exit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]

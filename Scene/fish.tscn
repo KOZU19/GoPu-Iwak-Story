@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://daprus0iys050"]
+
+[ext_resource type="Script" uid="uid://yw8b75lcqol" path="res://Script/fish.gd" id="1_xu20i"]
+[ext_resource type="Texture2D" uid="uid://ckehlxj61hytn" path="res://icon.svg" id="2_hgn23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iyjhp"]
+size = Vector2(118, 120.75)
+
+[node name="Area2D" type="Area2D" unique_id=229175806]
+script = ExtResource("1_xu20i")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1036571401]
+position = Vector2(0, 2)
+texture = ExtResource("2_hgn23")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1313080946]
+position = Vector2(-3, 3)
+shape = SubResource("RectangleShape2D_iyjhp")
