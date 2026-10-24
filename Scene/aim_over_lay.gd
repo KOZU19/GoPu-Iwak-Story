@@ -19,8 +19,7 @@ uniform vec2 viewport_size = vec2(1152.0, 648.0);
 uniform float scope_radius = 0.36;
 uniform float darkness = 0.82;
 void fragment(){
-	vec2 p = (UV - vec2(0.5))* viewport_size 
-	/ min(viewport_size.x / viewport_size.y);
+	vec2 p = (UV - vec2(0.5))* viewport_size / min(viewport_size.x / viewport_size.y);
 	float dist = length(p);
 	if (dist > scope_radius) {
 		COLOR = vec4(0.0, 0.0, 0.0, darkness);
@@ -35,6 +34,7 @@ void fragment(){
 	shader_material.set_shader_parameter("darkness", OUTSIDE_DARKNESS)
 	dimmer.material = shader_material
 	add_child(dimmer)
+	dimmer.show_behind_parent = true
 	aim_screen_position = get_viewport_rect().size / 2.0
 	visible= false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
