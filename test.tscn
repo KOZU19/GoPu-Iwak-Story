@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bd7n8mgwquekk"]
+
+[ext_resource type="Shader" uid="uid://7ia5qkyu3i50" path="res://Scene/scope_shader.gdshader" id="1_37kl0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mf4mk"]
+shader = ExtResource("1_37kl0")
+shader_parameter/viewport_size = Vector2(1152, 648)
+shader_parameter/scope_radius = 0.36
+shader_parameter/darkness = 0.82
+shader_parameter/blur_width = 24.0
+
+[node name="Node2D" type="Node2D" unique_id=858878525]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1088902747]
+material = SubResource("ShaderMaterial_mf4mk")
+offset_right = 1150.0
+offset_bottom = 675.0

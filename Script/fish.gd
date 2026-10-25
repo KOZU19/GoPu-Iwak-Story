@@ -18,6 +18,6 @@ func _process(delta):
 		direction.y = abs(direction.y)
 	elif position.y > pond_rect.end.y:
 		direction.y = -abs(direction.y)
-func _input_event(viewport: Viewport, event: InputEvent, shape_idx: int) -> void:
+func catch_fish():
 	caught.emit()
 	queue_free()

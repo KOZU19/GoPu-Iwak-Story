@@ -1,9 +1,11 @@
 extends Control
-const SCOPE_RADIUS_RATIO := 0.36
-const OUTSIDE_DARKNESS := 0.82
+const SCOPE_RADIUS_RATIO : float= 0.36
+const OUTSIDE_DARKNESS :float= 0.82
 var aim_screen_position := Vector2.ZERO
+var target_aim_position:  Vector2 = Vector2.ZERO
+const AIM_SMOOTHNESS: float = 0.14
 var dimmer: ColorRect
-
+var shader_material : ShaderMaterial
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -12,30 +14,18 @@ func _ready() -> void:
 	dimmer.name = "Dimmer"
 	dimmer.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	dimmer.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	var shader := Shader.new()
-	shader.code = """
-shader_type canvas_item;
-uniform vec2 viewport_size = vec2(1152.0, 648.0);
-uniform float scope_radius = 0.36;
-uniform float darkness = 0.82;
-void fragment(){
-	vec2 p = (UV - vec2(0.5))* viewport_size / min(viewport_size.x / viewport_size.y);
-	float dist = length(p);
-	if (dist > scope_radius) {
-		COLOR = vec4(0.0, 0.0, 0.0, darkness);
-	} else{
-		COLOR = vec4(0.0);
-	}
-}
-"""
-	var shader_material := ShaderMaterial.new()
+	dimmer.color = Color.WHITE
+	var shader :=preload("res://Scene/scope_shader.gdshader")
+	shader_material = ShaderMaterial.new()
+	dimmer.material = shader_material
 	shader_material.shader = shader
 	shader_material.set_shader_parameter("scope_radius", SCOPE_RADIUS_RATIO)
 	shader_material.set_shader_parameter("darkness", OUTSIDE_DARKNESS)
 	dimmer.material = shader_material
 	add_child(dimmer)
 	dimmer.show_behind_parent = true
-	aim_screen_position = get_viewport_rect().size / 2.0
+	var viewport_size :=  get_viewport_rect().size 
+	aim_screen_position = viewport_size / 2.0
 	visible= false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -48,19 +38,23 @@ func _process(delta: float) -> void:
 		viewport_size.x, viewport_size.y
 	) * SCOPE_RADIUS_RATIO
 	var mouse_pos := get_viewport().get_mouse_position()
+	shader_material.set_shader_parameter("scope_position",
+	mouse_pos / get_viewport_rect().size)
 	var offset := mouse_pos - center
 	
 	if offset.length()>radius - 8.0:
 		offset = offset.normalized() * (radius - 8.0)
-		aim_screen_position = center + offset
-		queue_redraw()
+	target_aim_position = center + offset
+
+	aim_screen_position = target_aim_position
+		
+	queue_redraw()
 		
 func _draw() -> void:
-	if not visible:
-		return
+	#if not visible:
+		#return
 	var p := aim_screen_position
-	var center := size / 2.0
-	var radius :float= min(size.x, size.y) * SCOPE_RADIUS_RATIO
+	
 	
 	var cross_color := Color(1.0, 0.2, 0.2, 1.0)
 	var gap :float= 5.0

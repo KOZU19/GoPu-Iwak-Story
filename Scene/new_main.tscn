@@ -3,6 +3,15 @@
 [ext_resource type="Script" uid="uid://bt7chgd7sg2c1" path="res://Script/main.gd" id="1_l5yta"]
 [ext_resource type="PackedScene" uid="uid://daprus0iys050" path="res://Scene/fish.tscn" id="2_mb27m"]
 [ext_resource type="Script" uid="uid://dffp0fqpbqtdn" path="res://Scene/aim_over_lay.gd" id="3_3l07l"]
+[ext_resource type="Shader" uid="uid://7ia5qkyu3i50" path="res://Scene/scope_shader.gdshader" id="3_mb27m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l5yta"]
+shader = ExtResource("3_mb27m")
+shader_parameter/viewport_size = Vector2(1152, 648)
+shader_parameter/scope_radius = 0.36
+shader_parameter/darkness = 0.82
+shader_parameter/blur_width = 24.0
+shader_parameter/scope_position = Vector2(0.5, 0.5)
 
 [node name="Node2D" type="Node2D" unique_id=806502427]
 script = ExtResource("1_l5yta")
@@ -36,6 +45,7 @@ position = Vector2(575, 324)
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1344093734]
 
 [node name="AimOverLay" type="Control" parent="CanvasLayer" unique_id=653626693]
+material = SubResource("ShaderMaterial_l5yta")
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
